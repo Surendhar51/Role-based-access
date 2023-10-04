@@ -10,28 +10,50 @@ export class AuthService {
     {
       id: 1,
       email: 'S@gmail.com',
-      password: '123456'
+      password: '123456',
+      role: 'user'
     },
     {
       id: 2,
       email: 'admin@gmail.com',
-      password: '123456'
+      password: '123456',
+      role: 'admin'
     }
   ];
 
-  constructor(private _router:Router) { }
+  constructor(private _router: Router) { }
   session: any;
+  role;
 
   login(email: string, password: number) {
     let user = this.users.find(u => u.email === email && u.password === password);
     if (user) {
       this.session = user;
+      this.role = user.role;
       localStorage.setItem('Session', JSON.stringify(this.session));
     }
     return user;
   }
 
-  logoutsession(){
+  logoutsession() {
     localStorage.removeItem('Session');
+  }
+
+  checkRole(menuName: any) {
+    if (this.role == 'admin') 
+    {
+      return true;
+    }
+    else 
+    {
+      if (menuName == 'list') 
+      {
+        return true;
+      }
+      else 
+      {
+        return false;
+      }
+    }
   }
 }
