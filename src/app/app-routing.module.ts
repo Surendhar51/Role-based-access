@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LandingComponent } from './landing/landing.component';
+import { AuthGuard } from './core/Guard/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/auth',
+    redirectTo: '/landing',
     pathMatch: 'full'
+  },
+  {
+    path:'landing',
+    component:LandingComponent
   },
   {
     path: 'auth',
@@ -13,6 +19,8 @@ const routes: Routes = [
   },
   {
     path: 'home',
+    canActivate: [AuthGuard],
+    canLoad:[AuthGuard],
     loadChildren: () => import('./Modules/home/home.module').then(m => m.HomeModule)
   }
 ];

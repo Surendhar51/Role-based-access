@@ -33,6 +33,5 @@ export class AuthService {
 
   logoutsession(){
     localStorage.removeItem('Session');
-    this._router.navigateByUrl('/login');
   }
 }
