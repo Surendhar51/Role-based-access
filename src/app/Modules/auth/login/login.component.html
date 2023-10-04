@@ -1,0 +1,25 @@
+<div id="Container" class="card my-auto shadow">
+    <h4>Hello! let's get Started</h4>
+    <h6>Sign in to continue.</h6>
+    <form [formGroup]="userForm">
+        <div class="form">
+            <div class="form-group">
+                <input type="email" placeholder="Email Address" formControlName="email" class="form-control"
+                    [ngClass]=" { 'is-invalid': submitted && f.email.errors } " />
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Password" formControlName="password" class="form-control"
+                    [ngClass]=" { 'is-invalid': submitted && f.password.errors } " />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required!</div>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="OnSave()">Login</button>
+            </div>
+        </div>
+    </form>
+</div>
